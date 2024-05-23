@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 네임 스페이스에 매퍼 인터페이스를 적음 -->
+<mapper namespace="com.mysite.mybatis.mapper.ProductMapper">
+
+    <select id="selectProductById" resultType="Product">
+        SELECT prod_id
+             ,prod_name
+             ,prod_price
+        FROM products
+        WHERE prod_id = #{id}
+    </select>
+
+    <select id="selectAllProducts" resultType="Product">
+        SELECT prod_id
+             ,prod_name
+             ,prod_price
+        FROM products
+    </select>
+
+    <!-- parameterType은 입력되는 객체의 타입으로 객체 안의 변수값이 자동 입력된다.   -->
+    <insert id="insertProduct" parameterType="Product">
+        INSERT INTO products (prod_name, prod_price)
+        VALUES (#{prodName}, #{prodPrice})
+    </insert>
+
+</mapper>
